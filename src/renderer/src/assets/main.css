@@ -1,0 +1,197 @@
+@import './base.css';
+:root {
+  --ratio-cardsim: 1.4;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  user-select: none;
+}
+
+button {
+  -webkit-app-region: no-drag;
+}
+
+.titleBar {
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  background: #2f3241;
+  color: #74b1be;
+}
+
+.cardHolder {
+  position: relative;
+  width: 500px;
+  height: 300px;
+  background: #000000;
+  border-radius: 10px;
+  padding: 50px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 10px;
+}
+.cardHolder::after {
+  content: '';
+  position: absolute;
+  height: 25px;
+  background: #0c0c0c;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.cardPlacement {
+  aspect-ratio: var(--ratio-cardsim);
+  position: relative;
+  z-index: 2;
+  width: 70px;
+  background: #0f0f0f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cardPlacement:hover {
+    cursor: pointer;
+}
+.cardPlacement:hover .cardEmptyIcon {
+    color: var(--ev-c-white);
+}
+.cardPlacement::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  height: 20px;
+  width: 50px;
+  background: #0F0F0F;
+  border-radius: 100%;
+  transform: translateY(-25px);
+}
+
+.card1 {
+  grid-column: 1;
+  grid-row: 1;
+}
+.card2 {
+  grid-column: 2;
+  grid-row: 1;
+}
+.card3 {
+  grid-column: 1;
+  grid-row: 2;
+}
+.card4 {
+  grid-column: 2;
+  grid-row: 2;
+}
+.card5 {
+  grid-column: 3;
+  grid-row: 2;
+}
+.card6 {
+  grid-column: 4;
+  grid-row: 2;
+}
+.card7 {
+  grid-column: 5;
+  grid-row: 2;
+}
+.card8 {
+  grid-column: 1;
+  grid-row: 3;
+}
+.card9 {
+  grid-column: 2;
+  grid-row: 3;
+}
+.card10 {
+  grid-column: 3;
+  grid-row: 3;
+}
+.card11 {
+  grid-column: 4;
+  grid-row: 3;
+}
+.card12 {
+  grid-column: 5;
+  grid-row: 3;
+}
+
+.cardEmptyIcon {
+  color: var(--ev-c-gray-1);
+  font-size: 30px;
+  transition: color 0.2s;
+}
+
+.cardSIM {
+  position: relative;
+  z-index: 10;
+  transition: transform 0.2s ease;
+  background: #ededed;
+  aspect-ratio: var(--ratio-cardsim);
+  width: 90%;
+  height: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  clip-path: polygon(
+    10px 0,
+    100% 0,
+    100% 100%,
+    20% 100%,
+    0% calc(100% - 20%),
+    0% 0%
+  );
+}
+.cardSIM.selected {
+  transform: scale(2);
+  z-index: 100;
+}
+
+.infoBox {
+  position: absolute;
+  right: -150px; /* Position à droite de la carte */
+  top: 0;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 4; /* Assure que l'infoBox soit au-dessus de la carte */
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  z-index: 50;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
