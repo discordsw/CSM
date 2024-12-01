@@ -1,0 +1,110 @@
+{
+  "place1": {
+    "id": "1",
+    "type": "",
+    "model": "CardSIM",
+    "operator": "sfr",
+    "SIM": "123456789123456789",
+    "line": "0601020304",
+    "PIN": "1234"
+  },
+  "place2": {
+    "id": "2",
+    "type": "empty",
+    "model": "",
+    "operator": "",
+    "SIM": "",
+    "line": "",
+    "PIN": ""
+  },
+  "place3": {
+    "id": "3",
+    "type": "empty",
+    "model": "",
+    "operator": "",
+    "SIM": "",
+    "line": "",
+    "PIN": ""
+  },
+  "place4": {
+    "id": "4",
+    "type": "empty",
+    "model": "",
+    "operator": "",
+    "SIM": "",
+    "line": "",
+    "PIN": ""
+  },
+  "place5": {
+    "id": "5",
+    "type": "empty",
+    "model": "",
+    "operator": "",
+    "SIM": "",
+    "line": "",
+    "PIN": ""
+  },
+  "place6": {
+    "id": "6",
+    "type": "empty",
+    "model": "",
+    "operator": "",
+    "SIM": "",
+    "line": "",
+    "PIN": ""
+  },
+  "place7": {
+    "id": "7",
+    "type": "empty",
+    "model": "",
+    "operator": "",
+    "SIM": "",
+    "line": "",
+    "PIN": ""
+  },
+  "place8": {
+    "id": "8",
+    "type": "empty",
+    "model": "",
+    "operator": "",
+    "SIM": "",
+    "line": "",
+    "PIN": ""
+  },
+  "place9": {
+    "id": "9",
+    "type": "empty",
+    "model": "",
+    "operator": "",
+    "SIM": "",
+    "line": "",
+    "PIN": ""
+  },
+  "place10": {
+    "id": "10",
+    "type": "empty",
+    "model": "",
+    "operator": "",
+    "SIM": "",
+    "line": "",
+    "PIN": ""
+  },
+  "place11": {
+    "id": "11",
+    "type": "empty",
+    "model": "",
+    "operator": "",
+    "SIM": "",
+    "line": "",
+    "PIN": ""
+  },
+  "place12": {
+    "id": "12",
+    "type": "empty",
+    "model": "",
+    "operator": "",
+    "SIM": "",
+    "line": "",
+    "PIN": ""
+  }
+}

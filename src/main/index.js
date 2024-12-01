@@ -4,14 +4,13 @@ import fs from 'fs'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 
-const isProd = process.env.NODE_ENV === 'production';
-const baseDir = isProd ? process.resourcesPath : __dirname;
+//const isProd = process.env.NODE_ENV === 'production';
+const isProd = false
+const baseDir = isProd ? process.resourcesPath : path.resolve(__dirname, '../../src/main');
+
 const filePath = path.join(baseDir, 'config.json');
-console.log('Chemin du fichier JSON:', filePath);
-console.log('CWD:', process.cwd());
-console.log('Resolved Path:', path.resolve(filePath));
+
 function initializeJsonFile() {
-  console.log(filePath)
   if (!fs.existsSync(filePath)) {
     const defaultData = {}
     for(let i = 1; i <= 12; i++) {
@@ -25,8 +24,6 @@ function initializeJsonFile() {
         PIN: "",
       }
     }
-
-
     fs.writeFileSync(filePath, JSON.stringify(defaultData, null, 2));
     console.log('Fichier JSON créé avec des données par défaut.');
   } else {
@@ -44,7 +41,7 @@ function createWindow() {
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
-    show: false,
+    show: true,
     titleBarStyle: 'hidden',
     titleBarOverlay: {
       color: '#2f3241',
@@ -96,10 +93,8 @@ app.whenReady().then(() => {
 
   initializeJsonFile()
 
-  ipcMain.handle('get-json-data', () => {
-    return readJsonFile()
-  })
-  const jsonData = readJsonFile()
+  ipcMain.handle('get-json-data', () => readJsonFile())
+  //const jsonData = readJsonFile()
 
   createWindow()
 
