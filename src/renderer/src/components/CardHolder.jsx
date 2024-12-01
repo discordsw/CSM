@@ -1,21 +1,25 @@
+import React, { useState, useEffect } from 'react'
 import CardPlacement from './CardPlacement'
 
 function CardHolder({onCardClick}) {
+  const [data, setData] = useState({})
+
+  useEffect(() => {
+    window.electron.getJsonData().then(
+      (jsonData) => {
+        setData(jsonData)
+      })
+  }, [])
 
   return (
     <>
       <div className="cardHolder">
-        <CardPlacement place="1" empty={false} operator="sfr"/>
-        <CardPlacement place="2" empty={false} operator="free"/>
-        <CardPlacement place="3" empty={false} operator="empty"/>
-        <CardPlacement place="4" empty={true}/>
-        <CardPlacement place="5" empty={true}/>
-        <CardPlacement place="6" empty={true}/>
-        <CardPlacement place="7" empty={true}/>
-        <CardPlacement place="8" empty={true}/>
-        <CardPlacement place="9" empty={true}/>
-        <CardPlacement place="10" empty={true}/>
-        <CardPlacement place="12" empty={false} operator="orange"/>
+        {Object.keys(data).map((placeKey) => {
+          const place = data[placeKey]
+          return (
+            <CardPlacement key={place.id} place={place.id} empty={place.type === "empty"} operator={place.operator || null} />
+          )
+        })}
       </div>
     </>
   )

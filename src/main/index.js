@@ -1,7 +1,43 @@
 import { app, shell, BrowserWindow, ipcMain } from 'electron'
-import { join } from 'path'
+import path, { join } from 'path'
+import fs from 'fs'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+
+const isProd = process.env.NODE_ENV === 'production';
+const baseDir = isProd ? process.resourcesPath : __dirname;
+const filePath = path.join(baseDir, 'config.json');
+console.log('Chemin du fichier JSON:', filePath);
+console.log('CWD:', process.cwd());
+console.log('Resolved Path:', path.resolve(filePath));
+function initializeJsonFile() {
+  console.log(filePath)
+  if (!fs.existsSync(filePath)) {
+    const defaultData = {}
+    for(let i = 1; i <= 12; i++) {
+      defaultData[`place${i}`] = {
+        id: `${i}`,
+        type: "empty",
+        model: "",
+        operator: "",
+        SIM: "",
+        line: "",
+        PIN: "",
+      }
+    }
+
+
+    fs.writeFileSync(filePath, JSON.stringify(defaultData, null, 2));
+    console.log('Fichier JSON créé avec des données par défaut.');
+  } else {
+    console.log('Fichier JSON existe déjà.');
+  }
+}
+
+function readJsonFile() {
+  const data = fs.readFileSync(filePath, 'utf-8');
+  return JSON.parse(data);
+}
 
 function createWindow() {
   // Create the browser window.
@@ -57,6 +93,13 @@ app.whenReady().then(() => {
 
   // IPC test
   ipcMain.on('ping', () => console.log('pong'))
+
+  initializeJsonFile()
+
+  ipcMain.handle('get-json-data', () => {
+    return readJsonFile()
+  })
+  const jsonData = readJsonFile()
 
   createWindow()
 
