@@ -3,9 +3,9 @@ import path, { join } from 'path'
 import fs from 'fs'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+import os from 'os'
 
-//const isProd = process.env.NODE_ENV === 'production';
-const isProd = false
+const isProd = process.env.NODE_ENV === 'production';
 const baseDir = isProd ? process.resourcesPath : path.resolve(__dirname, '../../src/main');
 
 const filePath = path.join(baseDir, 'config.json');
@@ -74,6 +74,47 @@ function createWindow() {
   }
 }
 
+// LOG
+const getNetworkAddresses = () => {
+  const networkInterfaces = os.networkInterfaces();
+  const addresses = [];
+
+  for (const [interfaceName, iface] of Object.entries(networkInterfaces)) {
+    for (const alias of iface) {
+      if (alias.family === 'IPv4') {
+        addresses.push({
+          interface: interfaceName,
+          ip: alias.address,
+          mac: alias.mac
+        });
+      }
+    }
+  }
+
+  return addresses;
+};
+
+const logFilePath = path.join(baseDir, 'logCSM.json')
+
+const logAction = (action, cardDetails) => {
+  const logEntry = {
+    action,
+    cardDetails,
+    timestamp: new Date().toISOString(),
+    adresses: getNetworkAddresses()
+  }
+
+  fs.readFile(logFilePath, 'utf8', (err, data) => {
+    const logData = data ? JSON.parse(data) : []
+    logData.push(logEntry)
+    fs.writeFile(logFilePath, JSON.stringify(logData, null, 2), (err) => {
+      if (err) {
+        console.error("Erreur lors de l'écriture du log : ", err)
+      }
+    })
+  })
+}
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
@@ -95,6 +136,19 @@ app.whenReady().then(() => {
 
   ipcMain.handle('get-json-data', () => readJsonFile())
   //const jsonData = readJsonFile()
+
+  ipcMain.handle('update-json-data', async (event, newData) => {
+    try {
+      await fs.promises.writeFile(filePath, JSON.stringify(newData, null, 2))
+      console.log('Données écrites avec succès')
+      return {success: true}
+    } catch (error) {
+      console.error("Erreur lors de l'écritrue du fichier JSON : ", error)
+      return {success: false, error: error.message}
+    }
+  })
+
+  ipcMain.on('card-action', (event, {action, cardDetails}) => logAction(action, cardDetails))
 
   createWindow()
 

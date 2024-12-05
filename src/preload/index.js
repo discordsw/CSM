@@ -3,7 +3,11 @@ import { electronAPI } from '@electron-toolkit/preload'
 
 // Custom APIs for renderer
 const api = {
-  getJsonData: () => ipcRenderer.invoke('get-json-data')
+  getJsonData: () => ipcRenderer.invoke('get-json-data'),
+  updateJsonData: (newData) => ipcRenderer.invoke('update-json-data', newData),
+  sendCardAction: (action, cardDetails) => {
+    ipcRenderer.send('card-action', {action, cardDetails})
+  }
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to

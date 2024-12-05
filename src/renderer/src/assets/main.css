@@ -161,6 +161,26 @@ button {
   transform: scale(2);
   z-index: 100;
 }
+.delete-button {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.delete-icon {
+  width: 15px;
+  height: 15px;
+  fill: red;
+  transition: transform 0.2s ease, color 0.2s ease-in-out;
+}
+.delete-button:hover .delete-icon {
+  transform: scale(1.2);
+  fill: darkred;
+}
+
 
 .infoBox {
   position: absolute;

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import SFR from '../assets/sfr.svg?react'
 import Orange from '../assets/orange.svg?react'
 import Free from "../assets/free.svg?react"
+import Remove from '../assets/remove.svg?react'
 import ModalCSM from '../components/ModalCSM'
 
 
@@ -11,7 +12,6 @@ function CardSIM(props) {
 
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
-
 
   const operators = {
     empty: {
@@ -32,9 +32,18 @@ function CardSIM(props) {
     <>
       <div className="cardSIM" onClick={handleOpen}>
         {operators[props.operator].logo && operators[props.operator].logo()}
+        <button
+          className="delete-button"
+          onClick={(event) => {
+            event.stopPropagation()
+            props.onDelete(props.id)
+          } }
+          aria-label="Supprimer la carte">
+          <Remove className="delete-icon" />
+        </button>
       </div>
 
-      <ModalCSM open={open} handleClose={handleClose} type="cardSIM" model={props.operator} id={props.id} />
+      <ModalCSM open={open} handleClose={handleClose} onCardSaved={props.onCardSaved} type="cardSIM" model={props.operator} id={props.id} />
     </>
   )
 

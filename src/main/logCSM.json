@@ -1,0 +1,152 @@
+[
+  {
+    "action": "Modification",
+    "cardDetails": {
+      "id": "1",
+      "type": "",
+      "model": "CardSIM",
+      "operator": "sfr",
+      "SIM": "stwsetwset",
+      "line": "wset",
+      "PIN": "wset"
+    },
+    "timestamp": "2024-12-05T15:41:16.068Z",
+    "adresses": [
+      {
+        "interface": "NordLynx",
+        "ip": "169.254.5.254",
+        "mac": "00:00:00:00:00:00"
+      },
+      {
+        "interface": "Ethernet",
+        "ip": "192.168.1.104",
+        "mac": "2c:4d:54:d8:62:23"
+      },
+      {
+        "interface": "VMware Network Adapter VMnet1",
+        "ip": "192.168.93.1",
+        "mac": "00:50:56:c0:00:01"
+      },
+      {
+        "interface": "VMware Network Adapter VMnet8",
+        "ip": "192.168.48.1",
+        "mac": "00:50:56:c0:00:08"
+      },
+      {
+        "interface": "Loopback Pseudo-Interface 1",
+        "ip": "127.0.0.1",
+        "mac": "00:00:00:00:00:00"
+      },
+      {
+        "interface": "vEthernet (Default Switch)",
+        "ip": "172.29.32.1",
+        "mac": "00:15:5d:61:e8:38"
+      },
+      {
+        "interface": "vEthernet (WSL (Hyper-V firewall))",
+        "ip": "172.31.160.1",
+        "mac": "00:15:5d:fc:6e:f4"
+      }
+    ]
+  },
+  {
+    "action": "Suppression",
+    "cardDetails": {
+      "id": "10",
+      "type": "empty",
+      "model": "",
+      "operator": "",
+      "SIM": "",
+      "line": "",
+      "PIN": ""
+    },
+    "timestamp": "2024-12-05T15:41:18.507Z",
+    "adresses": [
+      {
+        "interface": "NordLynx",
+        "ip": "169.254.5.254",
+        "mac": "00:00:00:00:00:00"
+      },
+      {
+        "interface": "Ethernet",
+        "ip": "192.168.1.104",
+        "mac": "2c:4d:54:d8:62:23"
+      },
+      {
+        "interface": "VMware Network Adapter VMnet1",
+        "ip": "192.168.93.1",
+        "mac": "00:50:56:c0:00:01"
+      },
+      {
+        "interface": "VMware Network Adapter VMnet8",
+        "ip": "192.168.48.1",
+        "mac": "00:50:56:c0:00:08"
+      },
+      {
+        "interface": "Loopback Pseudo-Interface 1",
+        "ip": "127.0.0.1",
+        "mac": "00:00:00:00:00:00"
+      },
+      {
+        "interface": "vEthernet (Default Switch)",
+        "ip": "172.29.32.1",
+        "mac": "00:15:5d:61:e8:38"
+      },
+      {
+        "interface": "vEthernet (WSL (Hyper-V firewall))",
+        "ip": "172.31.160.1",
+        "mac": "00:15:5d:fc:6e:f4"
+      }
+    ]
+  },
+  {
+    "action": "Suppression",
+    "cardDetails": {
+      "id": "4",
+      "type": "empty",
+      "model": "",
+      "operator": "",
+      "SIM": "",
+      "line": "",
+      "PIN": ""
+    },
+    "timestamp": "2024-12-05T15:41:19.908Z",
+    "adresses": [
+      {
+        "interface": "NordLynx",
+        "ip": "169.254.5.254",
+        "mac": "00:00:00:00:00:00"
+      },
+      {
+        "interface": "Ethernet",
+        "ip": "192.168.1.104",
+        "mac": "2c:4d:54:d8:62:23"
+      },
+      {
+        "interface": "VMware Network Adapter VMnet1",
+        "ip": "192.168.93.1",
+        "mac": "00:50:56:c0:00:01"
+      },
+      {
+        "interface": "VMware Network Adapter VMnet8",
+        "ip": "192.168.48.1",
+        "mac": "00:50:56:c0:00:08"
+      },
+      {
+        "interface": "Loopback Pseudo-Interface 1",
+        "ip": "127.0.0.1",
+        "mac": "00:00:00:00:00:00"
+      },
+      {
+        "interface": "vEthernet (Default Switch)",
+        "ip": "172.29.32.1",
+        "mac": "00:15:5d:61:e8:38"
+      },
+      {
+        "interface": "vEthernet (WSL (Hyper-V firewall))",
+        "ip": "172.31.160.1",
+        "mac": "00:15:5d:fc:6e:f4"
+      }
+    ]
+  }
+]

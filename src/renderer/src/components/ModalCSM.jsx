@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Modal, Box, MenuItem, Select, FormControl, InputLabel, TextField } from '@mui/material'
+import { Modal, Box, MenuItem, Select, FormControl, InputLabel, TextField, Button } from '@mui/material'
 import Fade from '@mui/material/Fade';
 import SFR from '../assets/sfr.svg?react'
 import Orange from '../assets/orange.svg?react'
@@ -11,7 +11,6 @@ function ModalCSM(props) {
   const [simNumber, setSimNumber] = useState('');
   const [line, setLine] = useState('');
   const [pin, setPin] = useState('');
-
 
   useEffect(() => {
 
@@ -46,6 +45,30 @@ function ModalCSM(props) {
 
   const handleOperatorChange = (event) => {
     setSelectedOperator(event.target.value)
+  }
+
+  const saveCardData = async () => {
+    const updatedData = await window.electron.getJsonData();
+    console.log('Data récupérées avant modification :', updatedData['place' + props.id]);
+
+    updatedData['place' + props.id] = {
+      id: props.id,
+      type: '',
+      model: 'CardSIM',
+      operator: selectedOperator,
+      SIM: simNumber,
+      line: line,
+      PIN: pin
+    };
+    console.log('Data to be saved:', updatedData['place' + props.id]);
+
+    await window.electron.updateJsonData(updatedData)
+      .then(() => console.log('Data successfully written to JSON')) // Confirmez ici que l'écriture est passée
+      .catch(error => console.error('Failed to write data to JSON:', error));
+
+    props.handleClose()
+    props.onCardSaved(props.id, updatedData)
+
   }
 
   let divLeft = null;
@@ -88,6 +111,7 @@ function ModalCSM(props) {
       <TextField fullWidth label="Numéro SIM" variant="outlined" margin="normal" value={simNumber} onChange={e => setSimNumber(e.target.value)} />
       <TextField fullWidth label="Ligne" variant="outlined" margin="normal" value={line} onChange={e => setLine(e.target.value)} />
       <TextField fullWidth label="PIN" variant="outlined" margin="normal" value={pin} onChange={e => setPin(e.target.value)} />
+      <Button variant="contained" color="primary" onClick={saveCardData}>Sauvegarder</Button>
     </div>
   )
 
